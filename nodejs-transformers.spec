@@ -6,12 +6,7 @@ Release:             1
 Summary:             String/Data transformations for Node.js
 License:             MIT
 URL:                 https://github.com/ForbesLindesay/transformers
-Source0:             http://registry.npmjs.org/transformers/-/transformers-%{version}.tgz
-#git clone git://github.com/ForbesLindesay/transformers.git
-#cd transformers
-#git archive --prefix="test/" --format=tar tags/3.1.0:test/ \
-#    | bzip2 > "$pwd"/tests-3.1.0.tar.bz2
-Source1:             tests-%{version}.tar.bz2
+Source0:             https://github.com/ForbesLindesay/transformers/archive/%{version}.tar.gz
 BuildArch:           noarch
 ExclusiveArch:       %{nodejs_arches} noarch
 BuildRequires:       nodejs-packaging npm(clone) npm(css) npm(promise) npm(uglify-js)
@@ -26,8 +21,7 @@ Transformations can be pretty much anything but most are either compilers
 or templating engines.
 
 %prep
-%setup -q -n package
-%setup -q -T -D -a 1 -n package
+%autosetup -n transformers-%{version}
 for i in history.md LICENSE README.md; do
     sed -i -e 's/\r$//' "${i}"
 done
